@@ -1,0 +1,32 @@
+{
+  "_cts": {
+    "publication": {
+      "title": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      },
+      "autor": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      },
+      "content": {
+        "heading": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        },
+        "body": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      }
+    }
+  }
+}

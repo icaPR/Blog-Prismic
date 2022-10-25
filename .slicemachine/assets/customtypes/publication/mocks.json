@@ -1,0 +1,63 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "publication",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Influence",
+        "spans": []
+      }
+    ],
+    "subtitle": [
+      {
+        "type": "paragraph",
+        "text": "Adipisicing ullamco eiusmod dolor do pariatur consectetur ea exercitation eu nulla tempor et ad. Consequat anim ullamco irure mollit laboris ut.",
+        "spans": []
+      }
+    ],
+    "autor": [
+      {
+        "type": "paragraph",
+        "text": "Nulla pariatur cillum magna fugiat quis ullamco Lorem cupidatat consequat. Duis cillum ex dolore consequat enim ullamco quis occaecat nisi excepteur labore. Culpa dolore consequat pariatur irure occaecat officia aute ullamco adipisicing elit non ullamco.",
+        "spans": []
+      }
+    ],
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1591012911207-0dbac31f37da"
+    },
+    "content": [
+      {
+        "heading": [
+          {
+            "type": "paragraph",
+            "text": "Ipsum dolor commodo laborum quis dolore eu ut occaecat sunt id fugiat officia mollit magna. Proident nisi deserunt ipsum in magna culpa mollit sint voluptate do cupidatat. Nisi est laboris tempor ipsum irure sit adipisicing eu ex fugiat labore proident dolore.",
+            "spans": []
+          }
+        ],
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Sint cillum non irure veniam. Aliqua elit commodo ullamco ullamco labore. Incididunt id ut in excepteur velit aliqua labore sint culpa ea.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}

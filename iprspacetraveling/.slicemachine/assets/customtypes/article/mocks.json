@@ -1,0 +1,33 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "article",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "heading1",
+        "text": "Unless",
+        "spans": []
+      }
+    ],
+    "publishDate": "2018-06-24",
+    "featuredImage": {
+      "dimensions": {
+        "width": 2000,
+        "height": 1500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1547394765-185e1e68f34e"
+    },
+    "slices": []
+  }
+}

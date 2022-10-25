@@ -1,1 +1,28 @@
 // TODO
+
+.banner {
+  width: 100%;
+}
+.containerContent {
+  max-width: 1120px;
+  margin: 5rem auto 0;
+  padding: 0 10rem;
+  border: solid blue;
+}
+
+.containerSection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3rem;
+  img {
+    margin-right: 0.5rem;
+  }
+  border: solid gray;
+  margin-top: 1.5rem;
+
+  span {
+    display: flex;
+    align-items: center;
+    margin: 0 3rem;
+  }
+}

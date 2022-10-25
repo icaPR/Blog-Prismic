@@ -5,3 +5,36 @@
 }
 
 // TODO
+:root {
+  --highlight: #ff57b2;
+  --heading: #f8f8f8;
+  --background: #1a1d23;
+  --info: #bbbbbb;
+  --body: #d7d7d7;
+}
+
+@media (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+@media (max-width: 720) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--heading);
+}
+
+h1 {
+  font: bold 1.5rem 'Inter', sans-serif;
+}
+
+p,
+time,
+span {
+  font: 400 1rem 'Inte', sans-serif;
+}
