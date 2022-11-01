@@ -1,33 +1,37 @@
 .contentContainer {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 10rem;
-  height: calc(100vh - 5rem);
+  max-width: 720px;
+  margin: 2rem auto;
 
-  .hero {
-    display: block;
+  strong {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 3rem;
+  }
+}
 
-    div:not(:first-child) {
-      margin-top: 3rem;
-    }
+.postInfo {
+  margin: 1rem 0;
+  color: var(--gray-300);
+  display: flex;
+  align-items: center;
 
-    p {
-      margin-top: 0.5rem;
-      color: var(--body);
-    }
+  time {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
 
-    section {
-      margin-top: 0.7rem;
-      span {
-        margin-left: 3rem;
-      }
-      color: var(--info);
+    svg {
+      margin: 0 0.4rem 0 0;
     }
   }
-  a {
-    display: block;
-    margin-top: 4rem;
-    text-decoration: none;
-    color: var(--highlight);
+
+  span {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+
+    svg {
+      margin: 0 0.4rem 0 0;
+    }
   }
 }

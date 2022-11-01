@@ -1,10 +1,10 @@
 * {
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-// TODO
 :root {
   --highlight: #ff57b2;
   --heading: #f8f8f8;
@@ -28,13 +28,11 @@ body {
   background: var(--background);
   color: var(--heading);
 }
-
-h1 {
-  font: bold 1.5rem 'Inter', sans-serif;
+a {
+  color: var(--heading);
+  text-decoration: none;
 }
-
-p,
-time,
-span {
-  font: 400 1rem 'Inte', sans-serif;
+a,
+button {
+  cursor: pointer;
 }

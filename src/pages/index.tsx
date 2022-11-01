@@ -1,11 +1,12 @@
-import { GetStaticProps } from 'next';
+import * as prismic from '@prismicio/client';
 import Head from 'next/head';
 import { getPrismicClient } from '../services/prismic';
 import Link from 'next/link';
-
-import commonStyles from '../styles/common.module.scss';
+import { FiCalendar, FiUser } from 'react-icons/fi';
 import styles from './home.module.scss';
-import { RichText } from 'prismic-dom';
+import { useState } from 'react';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
 interface Post {
   uid?: string;
@@ -26,88 +27,93 @@ interface HomeProps {
   postsPagination: PostPagination;
 }
 
-export default function Home() {
+export default function Home({ postsPagination }: HomeProps) {
+  const [posts, setPosts] = useState(postsPagination.results);
+  const [nextPage, setNextPage] = useState(postsPagination.next_page);
+
+  function hancleMorePosts(): void {
+    fetch(postsPagination.next_page)
+      .then(res => res.json())
+      .then(jsonData => {
+        const newPosts = jsonData.results.map(post => {
+          return {
+            uid: post.uid,
+            first_publication_date: post.first_publication_date,
+            data: post.data,
+          };
+        });
+        setPosts(oldPosts => [...oldPosts, ...newPosts]);
+        setNextPage(jsonData.next_page);
+      });
+  }
   return (
     <>
       <Head>
         <title>Spacetraveling</title>
       </Head>
       <main className={styles.contentContainer}>
-        <section className={styles.hero}>
-          <div>
-            <Link href={'/post'}>
-              <h1>Como utilizar Hooks1</h1>
+        <div className={styles.hero}>
+          {posts.map(post => (
+            <Link key={post.uid} href={`/post/${post.uid}`}>
+              <a>
+                <strong>{post.data.title}</strong>
+                <p>{post.data.subtitle}</p>
+
+                <div className={styles.postInfo}>
+                  <time>
+                    <FiCalendar />
+                    {format(
+                      new Date(post.first_publication_date),
+                      'dd MMM yyyy',
+                      {
+                        locale: ptBR,
+                      }
+                    )}
+                  </time>
+                  <span>
+                    <FiUser />
+                    {post.data.author}
+                  </span>
+                </div>
+              </a>
             </Link>
-            <p>Pensando em sincronização em vez de ciclos de vida.</p>
-            <section>
-              <time>
-                <img src="/images/calendar.svg" alt="iconCalendar" />
-                15 mar 2021
-              </time>
-              <span>
-                <img src="/images/user.svg" alt="iconUser" />
-                Jose da Silva
-              </span>
-            </section>
-          </div>
-          <div>
-            <h1>Como utilizar Hooks2</h1>
-            <p>Pensando em sincronização em vez de ciclos de vida.</p>
-            <section>
-              <img src="/images/calendar.svg" alt="iconCalendar" />
-              <time>15 mar 2021</time>
-              <span>
-                <img src="/images/user.svg" alt="iconUser" />
-                Jose da Silva
-              </span>
-            </section>
-          </div>
-          <div>
-            <h1>Como utilizar Hooks3</h1>
-            <p>Pensando em sincronização em vez de ciclos de vida.</p>
-            <section>
-              <time>
-                <img src="/images/calendar.svg" alt="iconCalendar" />
-                15 mar 2021
-              </time>
-              <span>
-                <img src="/images/user.svg" alt="iconUser" />
-                Jose da Silva
-              </span>
-            </section>
-          </div>
-        </section>
-        <a href="">Carregar mais posts</a>
+          ))}
+        </div>
+        {nextPage && (
+          <button
+            className={styles.morePost}
+            type="button"
+            onClick={hancleMorePosts}
+          >
+            Carregar mais posts
+          </button>
+        )}
       </main>
     </>
   );
 }
 
-export const getStaticProps = async ({ params }) => {
-  const { slug } = params;
+export const getStaticProps = async () => {
+  const client = getPrismicClient({});
 
-  const prismic = getPrismicClient({});
-  /* const postsResponse = await prismic.getByType();
+  const response = await client.get({
+    predicates: prismic.predicate.at('document.type', 'publication'),
+  });
 
-  const post = {
-    slug,
-    title: RichText.asText(postsResponse.data.title),
-    content: RichText.asHtml(postsResponse.data.content.splice(0, 3)),
-    updateAt: new Date(postsResponse.last_publication_date).toLocaleDateString(
-      'pt-BR',
-      {
-        day: '2-digit',
-        month: 'long',
-        year: 'numeric',
-      }
-    ),
-  };
-
+  const posts = response.results.map(post => {
+    return {
+      uid: post.uid,
+      first_publication_date: post.first_publication_date,
+      data: post.data,
+    };
+  });
   return {
     props: {
-      post,
+      postsPagination: {
+        results: posts,
+        next_page: response.next_page,
+      },
     },
     redirect: 60 * 30,
   };
-*/
 };
