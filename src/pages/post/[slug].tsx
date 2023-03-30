@@ -45,6 +45,7 @@ export default function Post({ post }) {
     const min = Math.ceil(total.length / 200);
     return acc + min;
   }, 0);
+
   return (
     <>
       <Head>
@@ -86,14 +87,14 @@ export default function Post({ post }) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const client = getPrismicClient({});
-  const posts = await client.get({
-    predicates: prismic.predicate.at('document.type', 'publication'),
-  });
+  const prismic = getPrismicClient({});
+  const posts = await prismic.getByType('posts');
 
   const paths = posts.results.map(post => {
     return {
-      params: { slug: post.uid },
+      params: {
+        slug: post.uid,
+      },
     };
   });
 

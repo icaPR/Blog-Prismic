@@ -94,26 +94,24 @@ export default function Home({ postsPagination }: HomeProps) {
 }
 
 export const getStaticProps = async () => {
-  const client = getPrismicClient({});
+  const prismic = getPrismicClient({});
 
-  const response = await client.get({
-    predicates: prismic.predicate.at('document.type', 'publication'),
+  const postsResponse = await prismic.getByType('posts', {
+    pageSize: 3,
+    orderings: {
+      field: 'last_publication_date',
+      direction: 'desc',
+    },
   });
 
-  const posts = response.results.map(post => {
-    return {
-      uid: post.uid,
-      first_publication_date: post.first_publication_date,
-      data: post.data,
-    };
-  });
+  const postsPagination = {
+    next_page: postsResponse.next_page,
+    results: postsResponse.results,
+  };
+
   return {
     props: {
-      postsPagination: {
-        results: posts,
-        next_page: response.next_page,
-      },
+      postsPagination,
     },
-    redirect: 60 * 30,
   };
 };
